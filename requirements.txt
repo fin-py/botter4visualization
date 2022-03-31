@@ -1,0 +1,5 @@
+jupyter-book
+nest_asyncio
+pandas
+plotly
+pybotters
