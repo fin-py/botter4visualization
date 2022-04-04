@@ -6,3 +6,5 @@ root: intro
 chapters:
 - file: pandas
 - file: liveupdate
+- file: static_plots
+
