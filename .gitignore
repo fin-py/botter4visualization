@@ -130,3 +130,6 @@ dmypy.json
 
 # this project
 _build
+
+# vscode
+.vscode/
