@@ -3,3 +3,7 @@ nest_asyncio
 pandas
 plotly
 pybotters
+matplotlib
+japanize-matplotlib
+scipy
+ta
