@@ -6,9 +6,11 @@ df_btc_eur = pd.read_pickle("../../data/binance_eth-eur.pkl")
 
 df_btc_eur.head()
 
-st.write(df_btc_eur.info())
+df_btc_eur.info()
 
-rule = "15min"
+interval = st.slider('resample interval(minutes):', 1, 60*24, 15, 1)
+
+rule = '{}min'.format(int(interval))
 df_ohlc_btc_eur = df_btc_eur["price"].resample(rule, label="right").ohlc()
 df_ohlc_btc_eur["volume"] = df_btc_eur["size"].resample(rule, label="right").sum()
 

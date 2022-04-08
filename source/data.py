@@ -68,7 +68,7 @@ def gz_to_dataframe(gzfile):
 #     # save_dir = "./data/binance/gz"
 #     save_dir = "/tmp/binance/gz"
 #     download_anyway = True
-
+#
 #     for date in dates:
 #         for instrument in instruments:
 #             get_execution_gz(endpoint, exchange, instrument, date, save_dir, download_anyway)
