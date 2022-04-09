@@ -8,7 +8,7 @@ df_btc_eur.head()
 
 df_btc_eur.info()
 
-interval = st.slider('resample interval(minutes):', 1, 60*24, 15, 1)
+interval = st.slider('interval(minutes):', 1, 60*24, 15, 1)
 
 rule = '{}min'.format(int(interval))
 df_ohlc_btc_eur = df_btc_eur["price"].resample(rule, label="right").ohlc()
