@@ -9,4 +9,4 @@ chapters:
 - file: plotly
 - file: streamlit_interactive
 - file: dash
-- file: live_upate
+- file: live_update
