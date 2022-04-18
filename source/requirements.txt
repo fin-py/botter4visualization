@@ -1,3 +1,8 @@
-jupyter-book
+nest_asyncio
+pandas
+plotly
+pybotters
 matplotlib
-numpy
+japanize-matplotlib
+scipy
+ta
