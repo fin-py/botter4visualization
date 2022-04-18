@@ -4,7 +4,9 @@
 format: jb-book
 root: intro
 chapters:
-- file: pandas
-- file: liveupdate
 - file: static_plots
-
+- file: plotly_express
+- file: plotly
+- file: streamlit_interactive
+- file: dash
+- file: live_update
