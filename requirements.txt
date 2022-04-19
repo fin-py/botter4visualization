@@ -7,4 +7,5 @@ matplotlib
 japanize-matplotlib
 scipy
 ta
+click
 streamlit
