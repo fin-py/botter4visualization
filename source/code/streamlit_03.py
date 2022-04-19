@@ -15,8 +15,8 @@ st.set_page_config(layout='wide')
 @st.cache(allow_output_mutation=True)
 def pre_process():
     logging.info('load data')
-    df_eth_eur = pd.read_pickle("../../data/binance_btc-eur_bk.pkl")
-    df_btc_eur = pd.read_pickle("../../data/binance_eth-eur_bk.pkl")
+    df_eth_eur = pd.read_pickle("../../data/binance_btc-eur.pkl")
+    df_btc_eur = pd.read_pickle("../../data/binance_eth-eur.pkl")
 
     rule = '15min'
     df_ohlc_btc_eur = df_btc_eur["price"].resample(rule, label="right").ohlc()
