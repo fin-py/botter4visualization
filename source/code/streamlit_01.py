@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
 
-df_eth_eur = pd.read_pickle("../../data/binance_btc-eur.pkl")
-df_btc_eur = pd.read_pickle("../../data/binance_eth-eur.pkl")
+df_eth_eur = pd.read_pickle("../../data/binance_btc-eur_bk.pkl")
+df_btc_eur = pd.read_pickle("../../data/binance_eth-eur_bk.pkl")
 
 df_btc_eur.head()
 

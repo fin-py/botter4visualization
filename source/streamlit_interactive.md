@@ -69,7 +69,7 @@ rule = '{}min'.format(int(interval))
 ```
 
 ```{figure} ./resources/streamlit_02.png
-:name: streamlit01
+:name: streamlit02
 :width: 450px
 
 スライドバーの画面
@@ -79,7 +79,7 @@ rule = '{}min'.format(int(interval))
 
 ## streamlitの基本
 
-- streamlitの関数を呼び出すことで画面にコンポーネントを配置する
+- streamlitの関数を呼び出すことで画面にコンポーネントを配置する。ユーザ入力の値は戻り値として受け取れるので、その値で次の処理を変えることができるので気軽にインターラクティブなものを作れる。
 - 書いた順番に実行される
 
 とても手軽である反面、高度なカスタマイズができません。簡単なログインを付けられるが、ごく簡易的なものになります。
@@ -117,6 +117,13 @@ st.components.v1.html('<h1>streamlitによる可視化</h1>')
 
 最後にstreamlitを使って解析ツールを作ってみます
 
+```{figure} ./resources/streamlit_03.png
+:name: streamlit03
+:width: 450px
+
+解析ツール
+```
+
 ### ページ分け
 
 様々な可視化を使いたいが、それを一度に全部を表示すると時間がかかってしまうので、
@@ -127,7 +134,8 @@ st.components.v1.html('<h1>streamlitによる可視化</h1>')
 ```
 pages = {
     '価格': viz_price,
-    '価格+指標': viz_2nd_axe
+    '価格＋指標': viz_2nd_axe,
+    '出来高': viz_volume
 }
 
 page = st.sidebar.radio('画面：', list(pages.keys()))

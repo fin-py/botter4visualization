@@ -1,19 +1,22 @@
 import streamlit as st
+import datetime
 import pandas as pd
 import logging
 import ta
+import matplotlib.pyplot as plt
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s %(levelname)s %(message)s",
                     datefmt="%m/%d/%Y %X")
+st.set_page_config(layout='wide')
 
 
 # 前処理を一度だけ実行するようにする
-@st.cache
+@st.cache(allow_output_mutation=True)
 def pre_process():
     logging.info('load data')
-    df_eth_eur = pd.read_pickle("../../data/binance_btc-eur.pkl")
-    df_btc_eur = pd.read_pickle("../../data/binance_eth-eur.pkl")
+    df_eth_eur = pd.read_pickle("../../data/binance_btc-eur_bk.pkl")
+    df_btc_eur = pd.read_pickle("../../data/binance_eth-eur_bk.pkl")
 
     rule = '15min'
     df_ohlc_btc_eur = df_btc_eur["price"].resample(rule, label="right").ohlc()
@@ -93,12 +96,27 @@ def viz_2nd_axe():
         st.dataframe(df_view)
 
 
+def viz_volume():
+    date_start = st.date_input('start:', datetime.datetime(2022, 3, 1))
+    date_end = st.date_input('end:', datetime.datetime(2022, 3, 31))
+    df_15min = df_btc_eur["price"].resample("15min", label="right").ohlc()
+    df_15min["volume"] = df_btc_eur["size"].resample("15min", label="right").sum()
+    df_15min["pricecut"] = pd.cut(df_15min["close"], 30, ).apply(lambda x: x.left)
+    df_15min = df_15min.loc[date_start: date_end]
+    s_vol_by_price = df_15min.groupby("pricecut")["volume"].sum()
+    fig, axes = plt.subplots(1, 2, figsize=(20, 5), constrained_layout = True)
+    df_15min["close"].plot(ax=axes[0], yticks=s_vol_by_price.index, grid=True)
+    fig = s_vol_by_price.plot(kind="barh",ax=axes[1],sharey=axes[0], grid=True)
+    st.pyplot(fig=fig.figure)
+
+
 df_eth_eur, df_btc_eur, df_ohlc_eth_eur, df_ohlc_btc_eur = pre_process()
 st.title('Botterのためのデータ可視化入門、streamlitの巻')
 
 pages = {
     '価格': viz_price,
-    '価格＋指標': viz_2nd_axe
+    '価格＋指標': viz_2nd_axe,
+    '出来高': viz_volume
 }
 
 page = st.sidebar.radio('画面：', list(pages.keys()))
